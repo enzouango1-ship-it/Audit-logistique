@@ -1,4 +1,4 @@
-
+```python
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -52,15 +52,16 @@ elif page == "Simulateur de Congestion":
     
     # Calcul mathématique quadratique : Coût = a*(Volume - Capacité)^2 + Coût de base
     x = np.linspace(500, 2000, 100)
-    # Fonction quadratique y = ax^2 + bx + c simplifiée sous forme d'écart
-    y = 5000 * (x - capacite)**2 + 1500000  # 1 500 000 FCFA de coût fixe de base
+    y = 5000 * (x - capacite)**2 + 1500000  # 1 500 000 FCFA de coût de base
     
     cost_actual = 5000 * (volume_actuel - capacite)**2 + 1500000 if volume_actuel > capacite else 1500000
     
-    # Graphique de la courbe en U
+    # Graphique de la courbe
     df_chart = pd.DataFrame({'Volume': x, 'Coût Total (FCFA)': y})
     fig_curve = px.line(df_chart, x='Volume', y='Coût Total (FCFA)', title="Courbe d'explosion des coûts de surestaries")
     fig_curve.add_scatter(x=[volume_actuel], y=[cost_actual], mode='markers+text', text=["Votre Position"], name="Position Actuelle", marker=dict(size=12, color='red'))
     
     st.plotly_chart(fig_curve, use_container_width=True)
-    st.metric(label="Coût estimé des surestaries / pénalités", value=f"{int(cost_actual):,} FCFA"
+    st.metric(label="Coût estimé des surestaries / pénalités", value=f"{int(cost_actual):,} FCFA")
+```
+
